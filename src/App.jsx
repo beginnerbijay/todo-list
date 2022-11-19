@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { Input, ServerStyleSheets } from '@material-ui/core';
+import { Box, Input, ServerStyleSheets, Typography } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -50,11 +50,16 @@ const deletedo=(id)=>{
 
   return (
     <>
+    <Box className='head'>
+    <Typography  style={{fontSize:60}}>To Do List</Typography>
+    </Box>
+    <Box className='box'>
+    <Box>
 <Input style={{width: 300,fontSize:40}}  placeholder="Enter Task" value={counts} onChange={(e)=>changes(e)}/>
 <Fab size="large" color="secondary" >
   <AddIcon onClick={change}/>
-</Fab>
-<List>
+</Fab></Box>
+<List className='list'>
     {count.map((value,index)=>{return (<>
     <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)}>
             <ListItemIcon>
@@ -65,16 +70,13 @@ const deletedo=(id)=>{
                 disableRipple
                 inputProps={{ 'aria-labelledby': value }}
               /></ListItemIcon>
-      <ListItemText style={{textDecoration: line?"line-through":"none"}}primary={value} />
+      <ListItemText style={{textDecoration: line?"line-through":"none"}} primary={value} />
 <DeleteIcon onClick={()=>(deletedo(index))}/>
    
 </ListItem>
-      
-      
-      
-      
     </>)}
 )}</List>
+</Box>
 </>
   )
 }
